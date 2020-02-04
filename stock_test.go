@@ -20,15 +20,15 @@ func Test_Stockpile_String(t *testing.T) {
 
 	s = append(s, Stock{"Example", 1})
 	got := s.String()
-	expected := `Example: 1
+	expected := `Example                            1
 `
 	if got != expected {
 		t.Errorf("got: %s, expected: %s\n", got, expected)
 	}
 	s = append(s, Stock{"Example_Two", 3})
 	got = s.String()
-	expected = `Example: 1
-Example_Two: 3
+	expected = `Example                            1
+Example_Two                        3
 `
 	if got != expected {
 		t.Errorf("got: %s\n expected: %s\n", got, expected)
@@ -40,7 +40,7 @@ func Test_Stockpile_Add(t *testing.T) {
 	err := s.Add(Stock{"Example", 1})
 
 	got := s.String()
-	expected := `Example: 1
+	expected := `Example                            1
 `
 	if err != nil {
 		t.Errorf("got error: %v, expected error: %v", err, nil)
@@ -50,7 +50,7 @@ func Test_Stockpile_Add(t *testing.T) {
 	}
 	err = s.Add(Stock{"Example", 1})
 	got = s.String()
-	expected = `Example: 2
+	expected = `Example                            2
 `
 	if err != nil {
 		t.Errorf("got error: %v, expected error: %v", err, nil)
@@ -61,7 +61,7 @@ func Test_Stockpile_Add(t *testing.T) {
 
 	err = s.Add(Stock{"Example", 0})
 	got = s.String()
-	expected = `Example: 2
+	expected = `Example                            2
 `
 	if err == nil {
 		t.Errorf("got error: %v, expected error: %v", nil, err)
@@ -71,7 +71,7 @@ func Test_Stockpile_Add(t *testing.T) {
 	}
 	err = s.Add(Stock{"Example", -1})
 	got = s.String()
-	expected = `Example: 2
+	expected = `Example                            2
 `
 	expectedErrorString := "trying to add a stock with 0 or less quantity"
 	if err == nil {
@@ -82,7 +82,7 @@ func Test_Stockpile_Add(t *testing.T) {
 	}
 	err = s.Add(Stock{"", 1})
 	got = s.String()
-	expected = `Example: 2
+	expected = `Example                            2
 `
 	expectedErrorString = "trying to add a stock with no name"
 	if err == nil {

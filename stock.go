@@ -16,7 +16,7 @@ func NewStockpile() Stockpile {
 func (s Stockpile) String() string {
 	var res string
 	for _, v := range s {
-		res += fmt.Sprintf("%s: %d\n", v.Name, v.Quantity)
+		res += fmt.Sprintf("%-30s %5d\n", v.Name, v.Quantity)
 	}
 	return res
 }
