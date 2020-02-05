@@ -5,6 +5,7 @@ import "fmt"
 type Stockpile []Stock
 
 type Stock struct {
+	ID       int
 	Name     string
 	Quantity int
 }

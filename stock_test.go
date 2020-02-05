@@ -18,14 +18,14 @@ func Test_Stockpile_String(t *testing.T) {
 		t.Error("string of empty stockpile should be zero length")
 	}
 
-	s = append(s, Stock{"Example", 1})
+	s = append(s, Stock{Name: "Example", Quantity: 1})
 	got := s.String()
 	expected := `Example                            1
 `
 	if got != expected {
 		t.Errorf("got: %s, expected: %s\n", got, expected)
 	}
-	s = append(s, Stock{"Example_Two", 3})
+	s = append(s, Stock{Name: "Example_Two", Quantity: 3})
 	got = s.String()
 	expected = `Example                            1
 Example_Two                        3
@@ -37,7 +37,7 @@ Example_Two                        3
 
 func Test_Stockpile_Add(t *testing.T) {
 	s := NewStockpile()
-	err := s.Add(Stock{"Example", 1})
+	err := s.Add(Stock{Name: "Example", Quantity: 1})
 
 	got := s.String()
 	expected := `Example                            1
@@ -48,7 +48,7 @@ func Test_Stockpile_Add(t *testing.T) {
 	if got != expected {
 		t.Errorf("got: %s, expected: %s\n", got, expected)
 	}
-	err = s.Add(Stock{"Example", 1})
+	err = s.Add(Stock{Name: "Example", Quantity: 1})
 	got = s.String()
 	expected = `Example                            2
 `
@@ -59,7 +59,7 @@ func Test_Stockpile_Add(t *testing.T) {
 		t.Errorf("got: %s, expected: %s\n", got, expected)
 	}
 
-	err = s.Add(Stock{"Example", 0})
+	err = s.Add(Stock{Name: "Example", Quantity: 0})
 	got = s.String()
 	expected = `Example                            2
 `
@@ -69,7 +69,7 @@ func Test_Stockpile_Add(t *testing.T) {
 	if got != expected {
 		t.Errorf("got: %s, expected: %s\n", got, expected)
 	}
-	err = s.Add(Stock{"Example", -1})
+	err = s.Add(Stock{Name: "Example", Quantity: -1})
 	got = s.String()
 	expected = `Example                            2
 `
@@ -80,7 +80,7 @@ func Test_Stockpile_Add(t *testing.T) {
 	if got != expected {
 		t.Errorf("got: %s, expected: %s\n", got, expected)
 	}
-	err = s.Add(Stock{"", 1})
+	err = s.Add(Stock{Name: "", Quantity: 1})
 	got = s.String()
 	expected = `Example                            2
 `
